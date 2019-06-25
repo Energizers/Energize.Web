@@ -20,6 +20,12 @@ namespace Energize.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddAuthentication().AddDiscord(discordOpt =>
+            {
+                discordOpt.AppId = string.Empty; //TODO: change config and add these to it
+                discordOpt.AppSecret = string.Empty;
+                discordOpt.Scope.Add("guilds");
+            });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => configuration.RootPath = "ClientApp/build");
