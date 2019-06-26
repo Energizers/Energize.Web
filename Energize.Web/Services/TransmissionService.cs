@@ -11,8 +11,7 @@ namespace Energize.Web.Services
         private static TransmissionService Initialize()
         {
             TransmissionService service = new TransmissionService();
-            OctoConfig config = OctoConfig.FromFile("octo_config.yaml");
-            service.Client = new OctoClient(config);
+            service.Client = new OctoClient(Config.Instance.Octovisor);
             service.Client.Log += OnLog;
 
             return service;

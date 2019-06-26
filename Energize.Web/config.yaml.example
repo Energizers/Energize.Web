@@ -1,0 +1,12 @@
+﻿---
+Discord:
+  ClientID: ""
+  ClientSecret: ""
+Octovisor:
+  ProcessName: EnergizeWeb
+  Token: token
+  Port: 6558
+  Address: www.google.com
+  BufferSize: 255
+  Timeout: 5000
+  CompressionThreshold: 300

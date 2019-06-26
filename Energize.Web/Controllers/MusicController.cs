@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Discord.OAuth2;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Energize.Web.Controllers
 {
-    [Authorize]
+    [Authorize(DiscordDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class MusicController : ControllerBase

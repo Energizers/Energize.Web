@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Energize.Web
 {
@@ -19,13 +20,18 @@ namespace Energize.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddAuthentication().AddDiscord(discordOpt =>
-            {
-                discordOpt.AppId = string.Empty; //TODO: change config and add these to it
-                discordOpt.AppSecret = string.Empty;
-                discordOpt.Scope.Add("guilds");
-            });
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services
+                .AddAuthentication()
+                .AddDiscord(option =>
+                {
+                    option.AppId = Config.Instance.Discord.ClientID;
+                    option.AppSecret = Config.Instance.Discord.ClientSecret;
+                    option.Scope.Add("guilds");
+                });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => configuration.RootPath = "ClientApp/build");
