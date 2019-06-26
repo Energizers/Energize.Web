@@ -1,10 +1,11 @@
+using Discord.OAuth2;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Energize.Web
 {
@@ -25,12 +26,21 @@ namespace Energize.Web
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services
-                .AddAuthentication()
+                .AddAuthentication(DiscordDefaults.AuthenticationScheme)
                 .AddDiscord(option =>
                 {
                     option.AppId = Config.Instance.Discord.ClientID;
                     option.AppSecret = Config.Instance.Discord.ClientSecret;
                     option.Scope.Add("guilds");
+                    option.CallbackPath = "/";
+                });
+
+            services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option =>
+                {
+                    option.LoginPath = "/oauth/login";
+                    option.LogoutPath = "/oauth/logout";
                 });
 
             // In production, the React files will be served from this directory
@@ -53,6 +63,8 @@ namespace Energize.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
