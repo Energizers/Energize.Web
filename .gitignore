@@ -234,3 +234,5 @@ _Pvt_Extensions
 .fake/
 
 Energize\.Web/octo_config\.yaml
+
+Energize\.Web/config\.yaml
