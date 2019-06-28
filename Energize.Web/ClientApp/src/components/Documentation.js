@@ -197,7 +197,6 @@ export default class Menu extends React.Component {
                             </ul>
                             - <code>|</code> indicates an "<b>or</b>" which means it can be either one thing, either the other.<br />
                             - <code>...</code> indicates that the <b>last argument can be repeated</b> multiple times.<br />
-                            - <code>,</code> indicates an argument <b>separator</b>, it means, a command need fewer arguments to work.<br /><br />
                             <input type='text' onChange={this.onSearch} placeholder='search commands...' /> <span id='searchResult' />
                             <div id='commandRoot'>Generating commands documentation...</div><br />
 
