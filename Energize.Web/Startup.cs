@@ -35,7 +35,6 @@ namespace Energize.Web
                     option.AppId = Config.Instance.Discord.ClientID;
                     option.AppSecret = Config.Instance.Discord.ClientSecret;
                     option.Scope.Add("guilds");
-                    option.CallbackPath = "/";
                 });
 
             services

@@ -23,7 +23,7 @@ namespace Energize.Web.Controllers
         public IActionResult LoginAndRedirect(string uri)
             => this.Challenge(new AuthenticationProperties
             {
-                RedirectUri = uri,
+                RedirectUri = $"/{uri}",
                 IsPersistent = true,
                 ExpiresUtc = DateTimeOffset.UtcNow.AddHours(1),
             }, DiscordDefaults.AuthenticationScheme);
