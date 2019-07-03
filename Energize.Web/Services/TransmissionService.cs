@@ -1,21 +1,20 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Octovisor.Client;
+using Octovisor.Client.Exceptions;
 using Octovisor.Messages;
 
 namespace Energize.Web.Services
 {
-    public class TransmissionService
+    public class TransmissionService : ITransmissionService
     {
-        public static TransmissionService Instance { get; } = Initialize();
-
-        private static TransmissionService Initialize()
+        public TransmissionService()
         {
-            TransmissionService service = new TransmissionService();
-            service.Client = new OctoClient(Config.Instance.Octovisor);
-            service.Client.Log += OnLog;
-
-            return service;
+            this.Client = new OctoClient(Config.Instance.Octovisor);
+            this.Client.Log += OnLog;
         }
+
+        public OctoClient Client { get; }
 
         private static void OnLog(LogMessage log)
         {
@@ -23,6 +22,24 @@ namespace Energize.Web.Services
                 Console.WriteLine(log.Content);
         }
 
-        public OctoClient Client { get; private set; }
+        public async Task<T> TransmitToEnergizeAsync<T>(string identifier)
+        {
+            T data = default;
+            try
+            {
+                OctoClient client = this.Client;
+                if (!client.IsConnected)
+                    await client.ConnectAsync();
+
+                if (client.TryGetProcess("Energize", out RemoteProcess proc))
+                    data = await proc.TransmitAsync<T>(identifier);
+
+                return data == null ? Activator.CreateInstance<T>() : data;
+            }
+            catch (TimeOutException)
+            {
+                return data == null ? Activator.CreateInstance<T>() : default;
+            }
+        }
     }
 }

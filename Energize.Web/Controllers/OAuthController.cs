@@ -21,24 +21,20 @@ namespace Energize.Web.Controllers
             => this.LoginAndRedirect("admin");
 
         public IActionResult LoginAndRedirect(string uri)
-        {
-            return Challenge(new AuthenticationProperties
+            => this.Challenge(new AuthenticationProperties
             {
                 RedirectUri = uri,
                 IsPersistent = true,
                 ExpiresUtc = DateTimeOffset.UtcNow.AddHours(1),
             }, DiscordDefaults.AuthenticationScheme);
-        }
 
         [Authorize]
         [HttpGet("logout")]
         public IActionResult Logout()
-        {
-            return SignOut(new AuthenticationProperties
+            =>  this.SignOut(new AuthenticationProperties
             {
                 RedirectUri = "/"
             }, CookieAuthenticationDefaults.AuthenticationScheme);
-        }
 
         [AllowAnonymous]
         public IActionResult Discord()

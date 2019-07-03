@@ -1,4 +1,5 @@
 using Discord.OAuth2;
+using Energize.Web.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +14,7 @@ namespace Energize.Web
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +25,8 @@ namespace Energize.Web
             services
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSingleton(typeof(ITransmissionService), typeof(TransmissionService));
 
             services
                 .AddAuthentication(DiscordDefaults.AuthenticationScheme)
