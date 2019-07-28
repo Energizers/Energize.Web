@@ -197,7 +197,12 @@ export default class Menu extends React.Component {
                             </ul>
                             - <code>|</code> indicates an "<b>or</b>" which means it can be either one thing, either the other.<br />
                             - <code>...</code> indicates that the <b>last argument can be repeated</b> multiple times.<br />
-                            <input type='text' onChange={this.onSearch} placeholder='search commands...' /> <span id='searchResult' />
+                            <div className='cmd-search-input'>
+                                <i className='fas fa-search'/>
+                                <input type='text' onChange={this.onSearch} placeholder='Search commands...' />
+                                <span id='searchResult'/>
+                            </div>
+
                             <div id='commandRoot'>Generating commands documentation...</div><br />
 
                             <h4 id='modifying-cmd-msg'>Editing or deleting a command message</h4>

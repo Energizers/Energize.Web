@@ -40,6 +40,26 @@
     content: '/ ';
 }
 
+.cmd-search-input {
+    background-color: #A51C15;
+    color: white;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.cmd-search-input > input {
+    background: transparent;
+    border: 0px solid black;
+    border-bottom: 1px solid white;
+    margin-left: 10px;
+}
+
+.cmd-search-input > span {
+    margin-left: 10px;
+}
+
 .docs-column {
     border-right: 1px solid #eeeeee;
 }
