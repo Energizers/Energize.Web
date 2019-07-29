@@ -56,6 +56,10 @@
     margin-left: 10px;
 }
 
+.cmd-search-input > input::placeholder {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 .cmd-search-input > span {
     margin-left: 10px;
 }
@@ -101,7 +105,6 @@
     box-shadow: 0 0 5px #333333;
     margin: 10px;
     border: 2px solid #A51C15;
-    ;
     z-index: 999;
     outline-width: 0;
 }
@@ -123,6 +126,16 @@
     border-left: 3px solid #A51C15;
     padding: 1%;
     margin-bottom: 1%;
+    color:white;
+    border-radius: 3px;
+}
+
+.tag {
+    background-color: #EDEDED;
+    border-left: 3px solid #A51C15;
+    padding: 1%;
+    margin-bottom: 1%;
+    border-radius: 3px;
 }
 
 .command>div>code{

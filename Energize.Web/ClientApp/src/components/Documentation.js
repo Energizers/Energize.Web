@@ -79,7 +79,7 @@ export default class Menu extends React.Component {
         ];
 
         return tags.map((tag, i) => (
-            <div key={'tag_' + i} className='command'>
+            <div key={'tag_' + i} className='tag'>
                 <u><b>{tag.name}</b></u><br />
                 {tag.description}
             </div>
