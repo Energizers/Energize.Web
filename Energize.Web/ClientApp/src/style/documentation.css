@@ -43,10 +43,10 @@
 .cmd-search-input {
     background-color: #A51C15;
     color: white;
-    border-radius: 3px;
     padding: 10px;
     margin-top: 15px;
-    margin-bottom: 5px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
 }
 
 .cmd-search-input > input {
@@ -58,6 +58,15 @@
 
 .cmd-search-input > span {
     margin-left: 10px;
+}
+
+.commands {
+    background-color: #333333;
+    padding: 1%;
+    color: white;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding-bottom: 5px;
 }
 
 .docs-column {
@@ -110,10 +119,15 @@
 }
 
 .command {
-    background-color: #EDEDED;
-    border-left: 2px solid #A51C15;
+    background-color: #262828;
+    border-left: 3px solid #A51C15;
     padding: 1%;
     margin-bottom: 1%;
+}
+
+.command>div>code{
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
 }
 
 .command>u {

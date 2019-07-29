@@ -87,7 +87,6 @@ export default class Menu extends React.Component {
     }
 
     async fetchCommands(search) {
-
         if (this.commands.length === 0) {
             let response = await fetch('./api/commands', {
                 method: 'GET'
@@ -106,7 +105,7 @@ export default class Menu extends React.Component {
         }
 
         if (this.commands.length > 0) {
-            let info = <div>To use the below commands you can either use the prefix (<b>{this.prefix}</b>), either mention Energize (<b>@{this.botMention}</b>).</div>;
+            let info = <div><i>To use the below commands you can either use the prefix (<b>{this.prefix}</b>), either mention Energize (<b>@{this.botMention}</b>).</i></div>;
             let elements = this.commands;
             if (search !== null) {
                 search = search.toLowerCase();
@@ -167,9 +166,9 @@ export default class Menu extends React.Component {
         });
     }
 
-    render() {
-        this.fetchCommands(null);
+    componentDidMount = () => this.fetchCommands(null);
 
+    render() {
         return (
             <div>
                 <button className='fabTop' onClick={this.onFabTopclick}><i className='fas fa-chevron-up' /></button>
@@ -203,7 +202,7 @@ export default class Menu extends React.Component {
                                 <span id='searchResult'/>
                             </div>
 
-                            <div id='commandRoot'>Generating commands documentation...</div><br />
+                            <div className='commands' id='commandRoot'>Generating commands documentation...</div><br />
 
                             <h4 id='modifying-cmd-msg'>Editing or deleting a command message</h4>
                             Ever tried to edit one of your messages that contained a bot command before, and realized it did not do <b>anything</b>? With Energize we thought about you! In fact if you <b>edit</b> one
