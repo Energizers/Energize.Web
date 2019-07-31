@@ -10,10 +10,17 @@ namespace Energize.Web
         public string ClientSecret;
     }
 
+    public struct WebhookConfig
+    {
+        public string GitlabToken;
+        public string DiscordBotsToken;
+    }
+
     public class Config
     {
         public DiscordConfig Discord;
         public OctoConfig Octovisor;
+        public WebhookConfig Webhook;
 
         public static Config Instance { get; } = Initialize();
 

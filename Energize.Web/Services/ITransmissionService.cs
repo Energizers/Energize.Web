@@ -8,5 +8,9 @@ namespace Energize.Web.Services
         OctoClient Client { get; }
 
         Task<T> TransmitToEnergizeAsync<T>(string identifier);
+
+        Task<bool> TransmitToEnergizeAsync<T>(string identifier, T value) where T : class;
+
+        Task<bool> TransmitToEnergizeAsync(string identifier);
     }
 }

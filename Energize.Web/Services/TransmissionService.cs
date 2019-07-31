@@ -41,5 +41,49 @@ namespace Energize.Web.Services
                 return data == null ? Activator.CreateInstance<T>() : default;
             }
         }
+
+        public async Task<bool> TransmitToEnergizeAsync(string identifier)
+        {
+            try
+            {
+                OctoClient client = this.Client;
+                if (!client.IsConnected)
+                    await client.ConnectAsync();
+
+                if (client.TryGetProcess("Energize", out RemoteProcess proc))
+                {
+                    await proc.TransmitAsync(identifier);
+                    return true;
+                }
+
+                return false;
+            }
+            catch (TimeOutException)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> TransmitToEnergizeAsync<T>(string identifier, T value) where T : class
+        {
+            try
+            {
+                OctoClient client = this.Client;
+                if (!client.IsConnected)
+                    await client.ConnectAsync();
+
+                if (client.TryGetProcess("Energize", out RemoteProcess proc))
+                {
+                    await proc.TransmitObjectAsync(identifier, value);
+                    return true;
+                }
+
+                return false;
+            }
+            catch (TimeOutException)
+            {
+                return false;
+            }
+        }
     }
 }

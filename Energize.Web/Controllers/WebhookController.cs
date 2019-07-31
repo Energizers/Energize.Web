@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Energize.Web.Models;
+using Energize.Web.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 using System.IO;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace Energize.Web.Controllers
 {
@@ -12,7 +13,14 @@ namespace Energize.Web.Controllers
     [ApiController]
     public class WebhookController : ControllerBase
     {
-        public async Task<(bool, string)> TryReadBodyAsync()
+        private readonly ITransmissionService TransmissionService;
+
+        public WebhookController(ITransmissionService transmission)
+        {
+            this.TransmissionService = transmission;
+        }
+
+        private async Task<(bool, string)> TryReadBodyAsync()
         {
             try
             {
@@ -41,6 +49,20 @@ namespace Energize.Web.Controllers
             }
         }
 
+        private bool TryDeserialize<T>(string json, out T value)
+        {
+            try
+            {
+                value = JsonConvert.DeserializeObject<T>(json);
+                return true;
+            }
+            catch
+            {
+                value = default;
+                return false;
+            }
+        }
+
         // POST: api/Webhook
         [HttpPost]
         public async Task Post()
@@ -48,11 +70,17 @@ namespace Energize.Web.Controllers
             (bool success, string body) = await this.TryReadBodyAsync();
             if (success)
             {
-                IPAddress ip = this.HttpContext.Connection.RemoteIpAddress;
-                IPHostEntry ipHostEntry = await Dns.GetHostEntryAsync(ip);
-
-                Console.WriteLine(ipHostEntry.HostName);
-                Console.WriteLine(body);
+                if (this.Request.Headers.TryGetValue("X-Gitlab-Token", out StringValues token) 
+                    && token.ToString().Equals(Config.Instance.Webhook.GitlabToken))
+                {
+                    await this.TransmissionService.TransmitToEnergizeAsync("update");
+                }
+                else if (this.Request.Headers.TryGetValue("Authorization", out StringValues authorization) 
+                    && authorization.ToString().Equals(Config.Instance.Webhook.DiscordBotsToken) 
+                    && this.TryDeserialize(body, out DiscordBotsVote vote))
+                {
+                    await this.TransmissionService.TransmitToEnergizeAsync("upvote", vote);
+                }
             }
         }
     }
