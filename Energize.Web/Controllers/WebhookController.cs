@@ -71,7 +71,11 @@ namespace Energize.Web.Controllers
             if (success)
             {
                 if (this.Request.Headers.TryGetValue("X-Gitlab-Token", out StringValues token) 
-                    && token.ToString().Equals(Config.Instance.Webhook.GitlabToken))
+                    && token.ToString().Equals(Config.Instance.Webhook.GitlabToken)
+                    && this.Request.Headers.TryGetValue("X-Gitlab-Event", out StringValues gitlabEvent) 
+                    && gitlabEvent.ToString().Equals("Pipeline Hook")
+                    && this.TryDeserialize(body, out GitlabPipelineObject gitlabObj)
+                    && gitlabObj.Attributes.Status.Equals("success"))
                 {
                     await this.TransmissionService.TransmitToEnergizeAsync("update");
                 }

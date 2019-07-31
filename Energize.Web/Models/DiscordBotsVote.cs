@@ -5,12 +5,12 @@ namespace Energize.Web.Models
     public class DiscordBotsVote
     {
         [JsonProperty("bot")]
-        public ulong BotId;
+        public ulong BotId { get; set; }
 
         [JsonProperty("user")]
-        public ulong UserId;
+        public ulong UserId { get; set; }
 
         [JsonProperty("isWeekend")]
-        public bool IsWeekend;
+        public bool IsWeekend { get; set; }
     }
 }
