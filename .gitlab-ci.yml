@@ -4,7 +4,12 @@ stages:
     - build
     
 before_script:
-    - "dotnet restore Energize.Web"
+    - "curl -sL https://deb.nodesource.com/setup_10.x | bash -"
+    - "apt-get install -y nodejs"
+    - "cd Energize.Web/ClientApp"
+    - "npm install Energize.Web/ClientApp"
+    - "cd ./.."
+    - "dotnet restore"
 
 build:
     stage: build
