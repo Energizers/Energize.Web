@@ -7,7 +7,7 @@ before_script:
     - "curl -sL https://deb.nodesource.com/setup_10.x | bash -"
     - "apt-get install -y nodejs"
     - "cd Energize.Web/ClientApp"
-    - "npm install Energize.Web/ClientApp"
+    - "npm install"
     - "cd ./.."
     - "dotnet restore"
 
