@@ -4,9 +4,9 @@ stages:
     - build
     
 before_script:
-    - "dotnet restore"
+    - "dotnet restore Energize.Web"
 
 build:
     stage: build
     script:
-        - "dotnet build"
+        - "dotnet build Energize.Web"
