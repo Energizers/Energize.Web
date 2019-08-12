@@ -105,7 +105,7 @@ export default class Menu extends React.Component {
         }
 
         if (this.commands.length > 0) {
-            let info = <div><i>To use the below commands you can either use the prefix (<b>{this.prefix}</b>), either mention Energize (<b>@{this.botMention}</b>).</i></div>;
+            let info = <div>To use the below commands you can either use the prefix (<b>{this.prefix}</b>), either mention Energize (<b>@{this.botMention}</b>).</div>;
             let elements = this.commands;
             if (search !== null) {
                 search = search.toLowerCase();
@@ -118,7 +118,7 @@ export default class Menu extends React.Component {
 
             elements = elements.map((cmd, i) => (
                 <div key={'cmd_' + i} className='command'>
-                    <u><b>{cmd.name}</b>  [<i>{cmd.moduleName}</i>]</u>
+                    <b><u style={{fontSize: '18px'}}>{cmd.name}</u></b>  <span className='cmd-module-name'>{cmd.moduleName}</span>
                     <br /><br />
                     {this.formatDescription(cmd)}<br />
                     {this.formatConditions(cmd.conditions)}<br />

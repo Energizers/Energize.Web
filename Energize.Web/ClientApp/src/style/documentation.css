@@ -73,23 +73,45 @@
     padding-bottom: 5px;
 }
 
+.cmd-module-name {
+    background-color: #A51C15;
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    font-weight: bolder;
+    font-size: 13px;
+    margin-left: 5px;
+    text-transform: uppercase;
+}
+
 .docs-column {
     border-right: 1px solid #eeeeee;
 }
 
-@media only screen and (max-width: 767px) {
-    .summary {
-        display: none;
-    }
+.command {
+    background-color: #262828;
+    border-left: 3px solid #A51C15;
+    padding: 1%;
+    margin-bottom: 1%;
+    color:white;
+    border-radius: 3px;
+}
 
-    .docs-container {
-        padding-right: 5%;
-        padding-left: 5%;
-    }
+.tag {
+    background-color: #EDEDED;
+    border-left: 3px solid #A51C15;
+    padding: 1%;
+    margin-bottom: 1%;
+    border-radius: 3px;
+}
 
-    .docs-column {
-        border-right: none;
-    }
+.command>div>code{
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.command>u {
+    font-size: large;
 }
 
 .fabTop {
@@ -121,28 +143,25 @@
     border-radius: 3px;
 }
 
-.command {
-    background-color: #262828;
-    border-left: 3px solid #A51C15;
-    padding: 1%;
-    margin-bottom: 1%;
-    color:white;
-    border-radius: 3px;
-}
+@media only screen and (max-width: 767px) {
+    .summary {
+        display: none;
+    }
 
-.tag {
-    background-color: #EDEDED;
-    border-left: 3px solid #A51C15;
-    padding: 1%;
-    margin-bottom: 1%;
-    border-radius: 3px;
-}
+    .docs-container {
+        padding-right: 5%;
+        padding-left: 5%;
+    }
 
-.command>div>code{
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-}
+    .docs-column {
+        border-right: none;
+    }
 
-.command>u {
-    font-size: large;
+    .commands {
+        padding: 2%;
+    }
+
+    .command {
+        padding: 2%;
+    }
 }
