@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default class _404 extends React.Component {
-    displayName = _404.name;
+export default class WIP extends React.Component {
+    displayName = WIP.name;
 
     render() {
         return (
             <div className='not-found'>
-                404<br/>
-                NOT FOUND
+                WORK IN<br/>
+                PROGRESS
             </div>
         );
     }

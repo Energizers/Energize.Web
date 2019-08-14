@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Layout from './components/Layout';
 import Documentation from './components/Documentation';
 import Home from './components/Home';
-import _404 from './components/404';
+import WIP from './components/WIP';
 
 export default class App extends React.Component {
     displayName = App.name
@@ -15,8 +15,8 @@ export default class App extends React.Component {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/docs" component={Documentation} />
-                        <Route path="/music" component={_404} />
-                        <Route path="/admin" component={_404} />
+                        <Route path="/music" component={WIP} />
+                        <Route path="/admin" component={WIP} />
                     </Switch>
                 </Layout>
             </BrowserRouter>
