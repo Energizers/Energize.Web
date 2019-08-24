@@ -97,13 +97,8 @@
     background-color: #212121;
     border-radius: 3px;
     color: white;
-    height: 300px;
+    height: 320px;
     margin-bottom: 30px;
-}
-
-.pros>div>div>i {
-    font-size: 100px;
-    margin-bottom: 20px;
 }
 
 .pros>div>div>span {

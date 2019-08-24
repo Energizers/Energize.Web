@@ -46,9 +46,12 @@ export default class Home extends React.Component {
         }
     }
 
-    render() {
+    componentDidMount = () => {
         this.fetchAndDisplayChangelog();
         this.fetchAndDisplayBotInformation();
+    }
+
+    render() {
         return (
             <div className='home'>
                 <video id='visualizer' src='./video/visualizer.mp4' autoPlay loop muted />
@@ -74,7 +77,7 @@ export default class Home extends React.Component {
                     <Row className='pros container'>
                         <Col md={4}>
                             <div>
-                                <i className='fas fa-broadcast-tower' />
+                                <img src='./img/volta/radio.png' alt='radio' height='150px' />
                                 <br />
                                 <span>Radios</span>
                                 <hr />
@@ -83,7 +86,7 @@ export default class Home extends React.Component {
                         </Col>
                         <Col md={4}>
                             <div>
-                                <i className='fab fa-youtube' />
+                                <img src='./img/volta/music.png' alt='music' height='150px' />
                                 <br />
                                 <span>Diverse Sources</span>
                                 <hr />
@@ -92,7 +95,7 @@ export default class Home extends React.Component {
                         </Col>
                         <Col md={4}>
                             <div>
-                                <i className='fas fa-user-tie' />
+                                <img src='./img/volta/user_friendly.png' alt='user friendly' height='150px' />
                                 <br />
                                 <span>User Friendly</span>
                                 <hr />
@@ -101,7 +104,7 @@ export default class Home extends React.Component {
                         </Col>
                         <Col md={4}>
                             <div>
-                                <i className='fas fa-chart-bar' />
+                                <img src='' alt='uptime' height='150px' />
                                 <br />
                                 <span>Uptime</span>
                                 <hr />
@@ -110,7 +113,7 @@ export default class Home extends React.Component {
                         </Col>
                         <Col md={4}>
                             <div>
-                                <i className='fas fa-terminal' />
+                                <img src='./img/volta/update.png' alt='commands' height='150px' />
                                 <br />
                                 <span>Commands</span>
                                 <hr />
@@ -119,7 +122,7 @@ export default class Home extends React.Component {
                         </Col>
                         <Col md={4}>
                             <div>
-                                <i className='fas fa-envelope-open-text' />
+                                <img src='' alt='support' height='150px' />
                                 <br />
                                 <span>Support</span>
                                 <hr />
