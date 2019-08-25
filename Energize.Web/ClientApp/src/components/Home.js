@@ -49,7 +49,7 @@ export default class Home extends React.Component {
     componentDidMount = () => {
         this.fetchAndDisplayChangelog();
         this.fetchAndDisplayBotInformation();
-    }
+    };
 
     render() {
         return (
@@ -104,7 +104,7 @@ export default class Home extends React.Component {
                         </Col>
                         <Col md={4}>
                             <div>
-                                <img src='' alt='uptime' height='150px' />
+                                <img src='./img/volta/uptime.png' alt='uptime' height='150px' />
                                 <br />
                                 <span>Uptime</span>
                                 <hr />
@@ -122,7 +122,7 @@ export default class Home extends React.Component {
                         </Col>
                         <Col md={4}>
                             <div>
-                                <img src='' alt='support' height='150px' />
+                                <img src='./img/volta/support.png' alt='support' height='150px' />
                                 <br />
                                 <span>Support</span>
                                 <hr />
