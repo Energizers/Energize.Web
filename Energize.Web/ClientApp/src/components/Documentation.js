@@ -10,6 +10,7 @@ export default class Menu extends React.Component {
     commands = [];
     prefix = '';
     botMention = '';
+    nsfwCommands = false;
 
     toCommandCondition(n) {
         switch (n) {
@@ -106,7 +107,7 @@ export default class Menu extends React.Component {
 
         if (this.commands.length > 0) {
             let info = <div>To use the below commands you can either use the prefix (<b>{this.prefix}</b>), either mention Energize (<b>@{this.botMention}</b>).</div>;
-            let elements = this.commands;
+            let elements = this.commands.filter(cmd => !(!this.nsfwCommands && cmd.moduleName.toLowerCase() === 'nsfw'));
             if (search !== null) {
                 search = search.toLowerCase();
                 elements = elements.filter(cmd => cmd.name.includes(search) || cmd.moduleName.toLowerCase().includes(search));
@@ -138,6 +139,16 @@ export default class Menu extends React.Component {
 
         if (this.commands.length > 0)
             this.fetchCommands(search);
+    }
+
+    onNsfwCheck = (_) => {
+        this.nsfwCommands = !this.nsfwCommands;
+        let input = document.getElementsByClassName('cmd-search-input')[0];
+        if (input.value === "" || input.value === 'undefined') {
+            this.fetchCommands(null);
+        } else {
+            this.fetchCommands(input.value);
+        }
     }
 
     onSummaryClick = (e) => {
@@ -196,9 +207,13 @@ export default class Menu extends React.Component {
                             </ul>
                             - <code>|</code> indicates an "<b>or</b>" which means it can be either one thing, either the other.<br />
                             - <code>...</code> indicates that the <b>last argument can be repeated</b> multiple times.<br />
-                            <div className='cmd-search-input'>
+                            <div className='cmd-search'>
                                 <i className='fas fa-search'/>
-                                <input type='text' onChange={this.onSearch} placeholder='Search commands...' />
+                                <input className='cmd-search-input' type='text' onChange={this.onSearch} placeholder='Search commands...' />
+                                <div className='nsfw-checkbox'>
+                                    <input type='checkbox' id='nsfw-checkbox' onChange={this.onNsfwCheck}/>
+                                    <label htmlFor='nsfw-checkbox'>NSFW</label>
+                                </div>
                                 <span id='searchResult'/>
                             </div>
 

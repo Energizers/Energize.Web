@@ -40,7 +40,7 @@
     content: '/ ';
 }
 
-.cmd-search-input {
+.cmd-search {
     background-color: #A51C15;
     color: white;
     padding: 10px;
@@ -49,19 +49,19 @@
     border-top-left-radius: 3px;
 }
 
-.cmd-search-input > input {
+.cmd-search-input {
     background: transparent;
     border: 0px solid black;
     border-bottom: 1px solid white;
     margin-left: 10px;
 }
 
-.cmd-search-input > input::placeholder {
+.cmd-search-input::placeholder {
     color: rgba(255, 255, 255, 0.9);
 }
 
-.cmd-search-input > span {
-    margin-left: 10px;
+#searchResult {
+    margin-left: 75px;
 }
 
 .commands {
@@ -93,7 +93,7 @@
     border-left: 3px solid #A51C15;
     padding: 1%;
     margin-bottom: 1%;
-    color:white;
+    color: white;
     border-radius: 3px;
 }
 
@@ -105,7 +105,7 @@
     border-radius: 3px;
 }
 
-.command>div>code{
+.command>div>code {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 3px;
 }
@@ -143,6 +143,54 @@
     border-radius: 3px;
 }
 
+input[type="checkbox"] {
+    opacity: 0;
+    display: none;
+}
+
+.nsfw-checkbox {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.nsfw-checkbox>label {
+    background: transparent;
+    border-radius: 3px;
+    border: 2px solid white;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    text-indent: 30px;
+    line-height: 24px;
+}
+
+.nsfw-checkbox>label:after {
+    position: absolute;
+    border-left: 2px solid #FFF;
+    border-bottom: 2px solid #FFF;
+    content: "";
+    width: 14px;
+    height: 6px;
+    transform: rotate(-45deg);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    left: 4px;
+    top: 5px;
+    opacity: 0;
+}
+
+#nsfw-checkbox:checked~label {
+    background: #a51c15;
+}
+
+#nsfw-checkbox:checked~label:after {
+    opacity: 1;
+}
+
 @media only screen and (max-width: 767px) {
     .summary {
         display: none;
@@ -163,5 +211,9 @@
 
     .command {
         padding: 2%;
+    }
+
+    #searchResult {
+        display: none;
     }
 }
