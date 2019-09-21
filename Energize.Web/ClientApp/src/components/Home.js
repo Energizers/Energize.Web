@@ -10,14 +10,12 @@ export default class Home extends React.Component {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    async fetchAndDisplayChangelog()
-    {
+    async fetchAndDisplayChangelog() {
         let response = await fetch('https://api.github.com/repos/Earu/Energize/commits', {
             method: 'GET'
         });
 
-        if (response.ok)
-        {
+        if (response.ok) {
             let commits = await response.json();
             commits = commits.slice(0, 10).map(commit => (
                 <li className='commit'>
@@ -25,7 +23,7 @@ export default class Home extends React.Component {
                         {this.capitalize(commit.commit.message)}
                         <hr />
                         {new Date(commit.commit.author.date).toLocaleString()}
-                        <img src={commit.author.avatar_url} alt='author_avatar'/>
+                        <img src={commit.author.avatar_url} alt='author_avatar' />
                         <span>{commit.author.login}</span>
                     </a>
                 </li>
@@ -66,7 +64,11 @@ export default class Home extends React.Component {
                                 <Col md={6} className='p-0 m-0'>
                                     <span className='intro-text'>An augmented Discord experience</span>
                                     <a href='https://discordapp.com/oauth2/authorize?client_id=360116713829695489&scope=bot&permissions=0' className='invite-btn'>Invite</a>
-                                    <a href='./docs' className='learn-more-btn'>Learn more</a>
+                                    <form className="learn-more-btn" style={{ padding: '0' }} action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                        <input type="hidden" name="cmd" value="_s-xclick" />
+                                        <input type="hidden" name="hosted_button_id" value="BX4VDHJLU9QYG" />
+                                        <input style={{ background: 'transparent', border: 'none', height: '45px', width: '100%' }} type="submit" border="0" name="submit" value="Donate" title="PayPal - The safer, easier way to pay online!" />
+                                    </form>
                                 </Col>
                             </Row>
                         </Col>
@@ -131,7 +133,7 @@ export default class Home extends React.Component {
                         </Col>
                     </Row>
                 </div>
-                <div className='stats' style={{backgroundImage: 'url(./img/mixer.png)'}}>
+                <div className='stats' style={{ backgroundImage: 'url(./img/mixer.png)' }}>
                     <br /><h3 style={{ margin: 0 }}>Facts about Energize<span role='img' aria-label='thunderbolt'>⚡</span></h3>
                     <div className='container'>
                         <Row>
@@ -144,7 +146,7 @@ export default class Home extends React.Component {
                                 <div className='stat'>
                                     <i className="fas fa-user" /><br /><span id='userCount'>0</span> Users
                                     </div>
-                                </Col>
+                            </Col>
                             <Col md={4}>
                                 <div className='stat'>
                                     <i className="fas fa-code" /><br /> 20K+ lines of code
@@ -156,7 +158,7 @@ export default class Home extends React.Component {
                 <div className='changelog'>
                     <div className='container'>
                         <h3>Changelog</h3>
-                        <ul id='changelogRoot'/>
+                        <ul id='changelogRoot' />
                     </div>
                 </div>
             </div>
