@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Octovisor.Client;
-using Octovisor.Client.Exceptions;
 using Octovisor.Messages;
 
 namespace Energize.Web.Services
@@ -36,8 +35,9 @@ namespace Energize.Web.Services
 
                 return data == default ? Activator.CreateInstance<T>() : data;
             }
-            catch (TimeOutException)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return data == default ? Activator.CreateInstance<T>() : default;
             }
         }
@@ -58,8 +58,9 @@ namespace Energize.Web.Services
 
                 return false;
             }
-            catch (TimeOutException)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
         }
@@ -80,8 +81,9 @@ namespace Energize.Web.Services
 
                 return false;
             }
-            catch (TimeOutException)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
         }
