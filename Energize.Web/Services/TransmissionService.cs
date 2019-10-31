@@ -18,7 +18,7 @@ namespace Energize.Web.Services
 
         private static void OnLog(LogMessage log)
         {
-            if (log.Severity == LogSeverity.Info)
+            if (log.Severity > 0) // anything but debug logs
                 Console.WriteLine(log.Content);
         }
 
@@ -34,11 +34,11 @@ namespace Energize.Web.Services
                 if (client.TryGetProcess("Energize", out RemoteProcess proc))
                     data = await proc.TransmitAsync<T>(identifier);
 
-                return data == null ? Activator.CreateInstance<T>() : data;
+                return data == default ? Activator.CreateInstance<T>() : data;
             }
             catch (TimeOutException)
             {
-                return data == null ? Activator.CreateInstance<T>() : default;
+                return data == default ? Activator.CreateInstance<T>() : default;
             }
         }
 
