@@ -28,22 +28,22 @@ namespace Energize.Web
 
             services.AddSingleton(typeof(ITransmissionService), typeof(TransmissionService));
 
-            services
+            /*services
                 .AddAuthentication(DiscordDefaults.AuthenticationScheme)
                 .AddDiscord(option =>
                 {
                     option.AppId = Config.Instance.Discord.ClientID;
                     option.AppSecret = Config.Instance.Discord.ClientSecret;
                     option.Scope.Add("guilds");
-                });
+                });*/
 
-            services
+            /*services
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option =>
                 {
                     option.LoginPath = "/oauth/login";
                     option.LogoutPath = "/oauth/logout";
-                });
+                });*/
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => configuration.RootPath = "ClientApp/build");

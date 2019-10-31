@@ -1,4 +1,4 @@
-﻿using Discord.OAuth2;
+﻿/*using Discord.OAuth2;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,4 +16,4 @@ namespace Energize.Web.Controllers
             return "unimplemented";
         }
     }
-}
+}*/

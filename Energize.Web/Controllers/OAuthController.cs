@@ -1,4 +1,4 @@
-﻿using Discord.OAuth2;
+﻿/*using Discord.OAuth2;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -40,4 +40,4 @@ namespace Energize.Web.Controllers
         public IActionResult Discord()
             => this.Redirect("music");
     }
-}
+}*/
